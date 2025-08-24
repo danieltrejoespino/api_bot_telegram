@@ -63,8 +63,19 @@ async function showAnime(ctx) {
   try {
     const data = await animeActions.getListAnime();
     for (const element of data) {
-      await ctx.reply(`${element.title}\nEpisodio: ${element.capi}`);
-      await ctx.replyWithPhoto(element.Image);
+      await ctx.replyWithPhoto(
+        { url: element.Image }, // imagen
+        {
+          caption: `📺 *${element.title}*\n🎬 Episodio: ${element.capi}`, // descripción
+          parse_mode: 'Markdown', // para negritas y emojis
+          reply_markup: {
+            inline_keyboard: [
+              [{ text: "🔗 Ver Anime", url: element.link }] // botón con enlace
+            ]
+          }
+        }
+      );      
+
     }
   } catch (error) {
     console.error('Error al enviar la imagen:', error);
