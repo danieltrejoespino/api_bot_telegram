@@ -68,11 +68,6 @@ async function showAnime(ctx) {
         {
           caption: `📺 *${element.title}*\n🎬 Episodio: ${element.capi}`, // descripción
           parse_mode: 'Markdown', // para negritas y emojis
-          reply_markup: {
-            inline_keyboard: [
-              [{ text: "🔗 Ver Anime", url: element.link }] // botón con enlace
-            ]
-          }
         }
       );      
 
